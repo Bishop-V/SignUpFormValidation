@@ -20,11 +20,16 @@ export default function Home() {
     defaultValues: {
       firstName: "",
       lastName: "",
+      email: "",
+      password: "",
+      passwordConfirm: "",
     },
     mode: "onSubmit",
   });
   const onSubmit = (data: SignUpForm) => {
     const { firstName, lastName, email } = data;
+    console.log({ firstName, lastName, email });
+    router.push({ pathname: "/confirmation", params: { firstName } });
   };
   return (
     <ScrollView style={[{}]}>
@@ -119,8 +124,8 @@ export default function Home() {
           <Text style={styles.error}>{errors.passwordConfirm.message}</Text>
         )}
 
-        <Pressable>
-          <Text style={styles.signUpButton}>Sign Up</Text>
+        <Pressable style={styles.signUpButton} onPress={handleSubmit(onSubmit)}>
+          <Text>Sign Up</Text>
         </Pressable>
       </View>
     </ScrollView>
