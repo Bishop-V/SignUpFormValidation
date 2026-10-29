@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "SignUpFormValidation",
-    "slug": "SignUpFormValidation",
+    "name": "Unisono",
+    "slug": "Unisono",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "signupformvalidation",
+    "scheme": "unisono",
     "userInterfaceStyle": "automatic",
     "ios": {
       "icon": "./assets/expo.icon"
@@ -20,7 +20,7 @@
       "predictiveBackGestureEnabled": false
     },
     "web": {
-      "output": "server",
+      "output": "static",
       "favicon": "./assets/images/favicon.png"
     },
     "plugins": [
