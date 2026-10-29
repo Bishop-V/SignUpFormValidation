@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   main: {
-    marginVertical: "30%",
+    marginVertical: "50%",
     justifyContent: "center",
     alignItems: "center",
   },

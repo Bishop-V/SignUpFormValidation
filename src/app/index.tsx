@@ -137,6 +137,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     marginVertical: 15,
     paddingVertical: 10,
+
     backgroundColor: "#4FA6ED",
     borderRadius: 20,
   },
@@ -149,7 +150,7 @@ const styles = StyleSheet.create({
     borderRadius: 99,
   },
   signUpForm: {
-    marginVertical: 20,
+    marginVertical: "40%",
 
     justifyContent: "center",
     alignItems: "center",
