@@ -6,25 +6,119 @@ import {
   Pressable,
   TextInput,
 } from "react-native";
-export default function home() {
+import { router } from "expo-router";
+import { useForm, Controller } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { signUpSchema, SignUpForm } from "@/schemas/signUpSchema";
+export default function Home() {
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<SignUpForm>({
+    resolver: zodResolver(signUpSchema),
+    defaultValues: {
+      firstName: "",
+      lastName: "",
+    },
+    mode: "onSubmit",
+  });
+  const onSubmit = (data: SignUpForm) => {
+    const { firstName, lastName, email } = data;
+  };
   return (
     <ScrollView style={[{}]}>
       <View style={styles.signUpForm}>
         <Text style={styles.title}>Sign Up</Text>
 
-        <TextInput style={styles.input} placeholder="First name" />
-
-        <TextInput style={styles.input} placeholder="Last name" />
-
-        <TextInput
-          style={styles.input}
-          placeholder="Email"
-          keyboardType="email-address"
+        <Controller
+          control={control}
+          name="firstName"
+          render={({ field: { onChange, value } }) => (
+            <TextInput
+              style={styles.input}
+              onChangeText={onChange}
+              value={value}
+              placeholder="First name"
+            />
+          )}
         />
 
-        <TextInput style={styles.input} placeholder="Password" />
+        {errors.firstName && (
+          <Text style={styles.error}>{errors.firstName.message}</Text>
+        )}
 
-        <TextInput style={styles.input} placeholder="Confirm Password" />
+        <Controller
+          control={control}
+          name="lastName"
+          render={({ field: { onChange, value } }) => (
+            <TextInput
+              style={styles.input}
+              onChangeText={onChange}
+              value={value}
+              placeholder="Last name"
+            />
+          )}
+        />
+
+        {errors.lastName && (
+          <Text style={styles.error}>{errors.lastName.message}</Text>
+        )}
+
+        <Controller
+          control={control}
+          name="email"
+          render={({ field: { onChange, value } }) => (
+            <TextInput
+              style={styles.input}
+              onChangeText={onChange}
+              value={value}
+              placeholder="Email"
+              keyboardType="email-address"
+            />
+          )}
+        />
+
+        {errors.email && (
+          <Text style={styles.error}>{errors.email.message}</Text>
+        )}
+
+        <Controller
+          control={control}
+          name="password"
+          render={({ field: { onChange, value } }) => (
+            <TextInput
+              style={styles.input}
+              onChangeText={onChange}
+              value={value}
+              placeholder="Password"
+              secureTextEntry
+            />
+          )}
+        />
+
+        {errors.password && (
+          <Text style={styles.error}>{errors.password.message}</Text>
+        )}
+
+        <Controller
+          control={control}
+          name="passwordConfirm"
+          render={({ field: { onChange, value } }) => (
+            <TextInput
+              style={styles.input}
+              onChangeText={onChange}
+              value={value}
+              placeholder="Confirm Password"
+              secureTextEntry
+            />
+          )}
+        />
+
+        {errors.passwordConfirm && (
+          <Text style={styles.error}>{errors.passwordConfirm.message}</Text>
+        )}
+
         <Pressable>
           <Text style={styles.signUpButton}>Sign Up</Text>
         </Pressable>
@@ -58,5 +152,8 @@ const styles = StyleSheet.create({
   title: {
     marginBottom: 10,
     fontSize: 20,
+  },
+  error: {
+    color: "#C83E3E",
   },
 });
